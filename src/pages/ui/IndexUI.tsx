@@ -227,70 +227,165 @@ export const IndexUI = ({ logic }: IndexUIProps) => {
       </section>
 
       {/* Social Proof Section */}
-      <section className="py-24 bg-gradient-to-b from-background to-muted/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }} />
+          <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '1s' }} />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            {/* Animated star rating */}
             <div className="inline-flex items-center gap-2 mb-6">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                <Star 
+                  key={i} 
+                  className="w-7 h-7 fill-yellow-400 text-yellow-400 animate-shimmer"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                />
               ))}
             </div>
-            <h2 className="font-space-grotesk text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">320M+</span> Skincare Routines
+            
+            {/* Counter with gradient */}
+            <h2 className="font-space-grotesk text-4xl md:text-6xl font-bold mb-6">
+              <span className="gradient-text inline-block animate-pulse-glow">320M+</span> People Glow Different Now
             </h2>
-            <p className="text-2xl italic text-foreground/80 font-light mb-4">
-              "Like a facial in a sachet"
-            </p>
+            
+            {/* Featured quote with neon glow */}
+            <div className="max-w-3xl mx-auto glass-card p-8 rounded-2xl neon-glow-magenta">
+              <p className="text-2xl md:text-3xl italic text-white font-light mb-4">
+                "POV: You found the mask that actually works"
+              </p>
+              <p className="text-sm text-primary font-semibold uppercase tracking-wider">
+                — Every TikTok Comment Ever
+              </p>
+            </div>
           </div>
 
+          {/* Testimonials Grid with stagger animation */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                name: 'Sarah K.',
+                name: '@skincare_bymia',
+                realName: 'Mia Chen',
+                platform: 'tiktok',
                 image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
-                text: 'My skin has NEVER looked this good. Instant glow!',
-                stars: 5,
+                text: 'omg stopped me mid-scroll... used it before my date and my bf literally asked if I got botox 💀 buying 10 more',
+                timestamp: '3 days ago',
+                verified: true,
+                likes: '12.4K',
               },
               {
-                name: 'Jessica M.',
+                name: '@jessglowup',
+                realName: 'Jessica Torres',
+                platform: 'tiktok',
                 image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
-                text: 'TikTok was right. This mask is absolute magic ✨',
-                stars: 5,
+                text: 'tried it for my wedding day and I\'m SOBBING... my skin has never been this glowy. photographer kept asking what I used 😭✨',
+                timestamp: '1 week ago',
+                verified: true,
+                likes: '28.9K',
               },
               {
-                name: 'Emily R.',
+                name: '@emilyskintok',
+                realName: 'Emily Rodriguez',
+                platform: 'instagram',
                 image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop',
-                text: 'Worth every penny. My skin feels so hydrated!',
-                stars: 5,
+                text: 'POV: you finally found the mask from that viral TikTok & it\'s actually better than they said??? glass skin is REAL 🔥',
+                timestamp: '5 days ago',
+                verified: true,
+                likes: '9.2K',
               },
               {
-                name: 'Michelle L.',
+                name: '@skincarewithmichelle',
+                realName: 'Michelle Park',
+                platform: 'instagram',
                 image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=400&fit=crop',
-                text: 'I buy 5 at a time now. Can\'t live without it!',
-                stars: 5,
+                text: 'week 3 update: my mom asked for my skincare routine... she\'s 58 and never cared before. that\'s the power of this mask ✨',
+                timestamp: '2 days ago',
+                verified: true,
+                likes: '15.7K',
               },
             ].map((testimonial, idx) => (
-              <div key={idx} className="glass-card p-6 rounded-xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold">{testimonial.name}</div>
-                    <div className="flex gap-1">
-                      {[...Array(testimonial.stars)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                      ))}
+              <div 
+                key={idx} 
+                className="glass-card p-6 rounded-xl hover:scale-105 hover:neon-glow-magenta transition-all duration-500 cursor-pointer group"
+                style={{ 
+                  animationDelay: `${idx * 0.15}s`,
+                  animation: 'float 6s ease-in-out infinite',
+                  animationDelay: `${idx * 0.5}s`
+                }}
+              >
+                {/* Platform Badge */}
+                <div className="absolute -top-3 -right-3 bg-gradient-to-br from-primary to-secondary px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 neon-glow-magenta">
+                  {testimonial.platform === 'tiktok' ? '🎵' : '📸'} 
+                  {testimonial.platform.toUpperCase()}
+                </div>
+
+                {/* Header */}
+                <div className="flex items-start gap-3 mb-4">
+                  <div className="relative">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/50 group-hover:ring-4 group-hover:ring-primary transition-all duration-300"
+                    />
+                    {testimonial.verified && (
+                      <div className="absolute -bottom-1 -right-1 bg-primary rounded-full p-1">
+                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  
+                  <div className="flex-1">
+                    <div className="font-bold text-white group-hover:text-primary transition-colors">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-xs text-foreground/60">{testimonial.realName}</div>
+                    <div className="flex items-center gap-3 mt-1">
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs text-foreground/50">{testimonial.timestamp}</span>
                     </div>
                   </div>
                 </div>
-                <p className="text-foreground/80 text-sm leading-relaxed">
+
+                {/* Testimonial Text */}
+                <p className="text-foreground/90 text-sm leading-relaxed mb-4">
                   "{testimonial.text}"
                 </p>
+
+                {/* Engagement */}
+                <div className="flex items-center gap-4 text-xs text-foreground/60">
+                  <div className="flex items-center gap-1">
+                    <span className="text-red-400">❤️</span>
+                    <span className="font-semibold">{testimonial.likes}</span>
+                  </div>
+                  <div className="text-foreground/40">•</div>
+                  <div className="text-primary font-semibold group-hover:text-secondary transition-colors">
+                    Verified Purchase
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="text-center mt-16">
+            <p className="text-lg text-foreground/70 mb-6">
+              Join thousands of people experiencing the viral glow ✨
+            </p>
+            <Button
+              onClick={handleBuyNow}
+              className="bg-gradient-to-r from-primary to-secondary hover:scale-110 transition-all duration-300 neon-glow-magenta text-lg px-10 py-6 font-bold"
+            >
+              GET THE VIRAL MASK NOW
+            </Button>
           </div>
         </div>
       </section>
