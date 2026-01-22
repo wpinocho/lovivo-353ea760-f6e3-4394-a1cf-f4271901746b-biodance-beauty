@@ -76,9 +76,9 @@ export const PageTemplate = ({
   }
 
   return (
-    <div className={cn("min-h-screen bg-background", className)}>
+    <div className={cn("min-h-screen bg-background dark", className)}>
       {header && (
-        <header className="sticky top-0 z-40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+        <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60 border-b border-white/10">
           {header}
         </header>
       )}
@@ -88,7 +88,7 @@ export const PageTemplate = ({
       </div>
 
       {footer && (
-        <footer className="border-t bg-muted/30">
+        <footer className="border-t border-white/10 bg-muted/30">
           {footer}
         </footer>
       )}

@@ -9,7 +9,7 @@ interface CollectionCardProps {
 
 export const CollectionCard = ({ collection, onViewProducts }: CollectionCardProps) => {
   return (
-    <Card className="bg-white border border-gray-200 overflow-hidden">
+    <Card className="glass-card overflow-hidden hover:scale-105 transition-all duration-300">
       <CardContent className="p-0">
         <div className="aspect-[4/3] bg-gray-100 overflow-hidden">
           {collection.image ? (
@@ -27,25 +27,25 @@ export const CollectionCard = ({ collection, onViewProducts }: CollectionCardPro
         
         <div className="p-4">
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-black font-semibold text-lg line-clamp-1">
+            <h3 className="text-foreground font-semibold text-lg line-clamp-1">
               {collection.name}
             </h3>
             {collection.featured && (
-              <span className="bg-orange-500 text-white text-xs px-2 py-1 rounded font-medium">
+              <span className="bg-gradient-to-r from-primary to-secondary text-white text-xs px-2 py-1 rounded font-medium">
                 Featured
               </span>
             )}
           </div>
           
           {collection.description && (
-            <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+            <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
               {collection.description}
             </p>
           )}
           
           <Button 
             variant="outline" 
-            className="w-full text-black border-gray-300 hover:bg-gray-50"
+            className="w-full bg-gradient-to-r from-primary to-secondary hover:scale-105 transition-all duration-300 border-0"
             onClick={() => onViewProducts(collection.id)}
           >
             View Products
